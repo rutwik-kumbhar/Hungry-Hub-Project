@@ -1,7 +1,6 @@
 package com.example.services;
 
 import com.example.entities.User;
-import com.example.exceptions.UserException;
 import com.example.paylode.AuthResponse;
 import com.example.paylode.Login;
 

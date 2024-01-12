@@ -3,8 +3,8 @@ package com.example.services.impl;
 import com.example.Repositories.UserRepository;
 import com.example.config.JwtTokenProvider;
 import com.example.entities.User;
+import com.example.exceptions.AlreadyExistException;
 import com.example.exceptions.ResourcesNotFoundException;
-import com.example.exceptions.UserException;
 import com.example.paylode.AuthResponse;
 import com.example.paylode.Login;
 import com.example.services.UserServices;
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserServices {
     @Override
     public User creareUser(User user) {
         Optional<User> optional = userRepository.findByEmail(user.getEmail());
-        if(optional.isPresent()) throw new UserException("User already exist this email id " + user.getEmail());
+        if(optional.isPresent()) throw new AlreadyExistException("User already exist this email id " + user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
@@ -71,8 +71,7 @@ public class UserServiceImpl implements UserServices {
     public User findUserByJwt(String jwt) {
       String username =    jwtTokenProvider.getUsernameFromToakn(jwt);
       Optional<User> opt =  userRepository.findByEmail(username);
-
-        User user = opt.orElseThrow(() -> new UserException("User not found with email " + username));
+        User user = opt.orElseThrow(() -> new ResourcesNotFoundException("User not found with email " + username));
         System.out.println(user);
         return user;
     }

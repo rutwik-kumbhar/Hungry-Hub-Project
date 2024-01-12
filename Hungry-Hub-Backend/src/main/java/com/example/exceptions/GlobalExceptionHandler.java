@@ -13,10 +13,14 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(ResourcesNotFoundException.class)
+    public ResponseEntity<ExceptionFormat>  ResourceNotFoundException(ResourcesNotFoundException ex , WebRequest wr){
+        return  new ResponseEntity<>(ExceptionFormat.builder().timestamp(LocalDateTime.now()).message(ex.getMessage()).uri(wr.getDescription(false)).build(),HttpStatus.NOT_FOUND);
+    }
 
-    @ExceptionHandler(UserException.class)
-    public ResponseEntity<?> UserException(UserException ex , WebRequest wr){
-        return new ResponseEntity<ExceptionFormat>(ExceptionFormat.builder().timestamp(LocalDateTime.now()).message(ex.getMessage()).uri(wr.getDescription(false)).build(), HttpStatus.NOT_FOUND);
+    @ExceptionHandler(AlreadyExistException.class)
+    public ResponseEntity<ExceptionFormat>  ResourceNotFoundException(AlreadyExistException ex , WebRequest wr){
+        return  new ResponseEntity<>(ExceptionFormat.builder().timestamp(LocalDateTime.now()).message(ex.getMessage()).uri(wr.getDescription(false)).build(),HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
