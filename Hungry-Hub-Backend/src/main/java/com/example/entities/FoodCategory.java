@@ -19,6 +19,6 @@ public class FoodCategory {
     private  Integer id;
     private  String category;
 
-    @OneToMany(mappedBy = "foodCategory" , cascade = CascadeType.ALL ,orphanRemoval = true)
+    @OneToMany(mappedBy = "foodCategory" , cascade = CascadeType.ALL )
     private List<Food> foods = new ArrayList<>();
 }

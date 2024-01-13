@@ -21,7 +21,7 @@ public class Food {
     private  String title;
 
     private String description;
-    private Double price;
+    private double price;
     private String imageUrl;
     private Integer deliverTime;
 
@@ -34,4 +34,6 @@ public class Food {
     @JoinColumn(name =  "foodcategory_id" )
     @JsonIgnore
     private  FoodCategory foodCategory;
+
+
 }

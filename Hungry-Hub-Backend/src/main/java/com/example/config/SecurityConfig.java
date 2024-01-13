@@ -44,7 +44,7 @@ public class SecurityConfig {
                     auth
                             .requestMatchers("/auth/**").permitAll()
                             .requestMatchers("/food/**").hasRole("ADMIN")
-                            .requestMatchers("/user/**").hasRole("USER")
+                            .requestMatchers("/user/**" , "/cart/**").hasRole("USER")
                             .anyRequest().authenticated();
 
                 })

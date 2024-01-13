@@ -48,4 +48,7 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime lastModifiedDate;
 
+    @OneToOne(mappedBy = "user" , cascade = CascadeType.ALL)
+    private  Cart cart;
+
 }
