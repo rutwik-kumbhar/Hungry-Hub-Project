@@ -1,0 +1,56 @@
+<div class="">
+    <p class="text-2xl font-semibold mb-4">Category Section</p>
+    <div class="flex justify-around gap-96 ml-10 items-center w-fit">
+        <div class="bg-gray-300 p-6 h-20 w-40 shadow-md text-center dark:text-gray-950" >
+            <!-- Content for the first box in the right section -->
+            <div>Total Category</div>
+            <div >{{categories.length}}</div>
+        </div>
+        <div class="bg-gray-300 p-6 h-20 w-96 shadow-md">
+            <form class="flex" #category="ngForm" (ngSubmit)="addCategory(category.value)">
+                <input type="text" placeholder="Add Category" name="category"
+                    class="w-full p-2 border border-gray-300 rounded-l-md" required ngModel>
+                <button class="bg-blue-500 text-white p-2 rounded-r-md">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="w-full mt-16 ">
+        <div class="relative overflow-x-auto ">
+            <table class="text-sm ml-36 rtl:text-right text-gray-500 dark:text-gray-400 text-center">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-24  py-3 ">
+                            Sr. No
+                        </th>
+                        <th scope="col" class="px-24 py-3">
+                            Category
+                        </th>
+                        <th scope="col" class="px-24  py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let category of categories">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                           {{category.id}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{category.category}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="inline-flex">
+
+                                <button type="button" (click)="deleteCategory(category.id)"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Delete</button>
+                            </span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
